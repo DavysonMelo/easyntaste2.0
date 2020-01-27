@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
     },
     title:{
         color:'#fff',
-        fontSize: 30,
-        fontFamily: 'Lobster'
+        fontSize: 30
     }
 })
