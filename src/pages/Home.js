@@ -1,6 +1,7 @@
 import React from 'react'
-import {Text, StyleSheet, Image, TextInput, ImageBackground, } from 'react-native'
+import {Text, StyleSheet, Image, TextInput, ImageBackground, TouchableOpacity, View} from 'react-native'
 
+import {MaterialIcons} from '@expo/vector-icons';
 
 import logo from './assets/logo.png'
 import bg from './assets/bg.jpg'
@@ -9,7 +10,12 @@ export default function Home(){
             <ImageBackground source={bg} style={styles.view}>
                 <Image source={logo} style={styles.img}/>
                 <Text style={styles.title}>Easy n' Taste</Text>
-                <TextInput style={styles.input}/>
+                <View style={styles.formGroup}>
+                    <TextInput style={styles.input}/>
+                    <TouchableOpacity>
+                        <MaterialIcons name="search" size={20} color='#0ff'/>
+                    </TouchableOpacity>
+                </View>
             </ImageBackground>
     )
 }
@@ -39,5 +45,9 @@ const styles = StyleSheet.create({
     title:{
         color:'#fff',
         fontSize: 30
+    },
+    formGroup:{
+        flex:1,
+        flexDirection:'row',
     }
 })
