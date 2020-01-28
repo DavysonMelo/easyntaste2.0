@@ -11,11 +11,15 @@ export default function Home(){
                 <Image source={logo} style={styles.img}/>
                 <Text style={styles.title}>Easy n' Taste</Text>
                 <View style={styles.formGroup}>
-                    <TextInput style={styles.input}/>
-                    <TouchableOpacity>
-                        <MaterialIcons name="search" size={20} color='#0ff'/>
-                    </TouchableOpacity>
-                </View>
+                    <View style={styles.inputLayout}>
+                        <TextInput style={styles.input}/>
+                    </View>
+                    <View style={styles.btnGroup}>
+                        <TouchableOpacity style={styles.button}>
+                            <MaterialIcons name="search" size={30} color='#fff'/>
+                        </TouchableOpacity>
+                    </View>
+                </View> 
             </ImageBackground>
     )
 }
@@ -24,7 +28,7 @@ const styles = StyleSheet.create({
     view:{
         flex:1,
         alignItems: 'center',
-        justifyContent: 'center',
+        padding:20,
         paddingBottom:200
     },
     title:{
@@ -36,11 +40,19 @@ const styles = StyleSheet.create({
         marginBottom:30,
     },
     input:{
-        width: 300,
+        width: '100%',
         height: 50,
         backgroundColor:'#fff',
-        borderRadius: 20,
-        padding: 15   
+        borderRadius: 15,
+        padding: 15,
+        shadowColor:'#000',
+        shadowOpacity:0.2,
+        shadowOffset:{
+            width:4,
+            height: 4
+
+        },
+        elevation: 2,   
     },
     title:{
         color:'#fff',
@@ -48,6 +60,34 @@ const styles = StyleSheet.create({
     },
     formGroup:{
         flex:1,
-        flexDirection:'row',
+        flexDirection: 'row',
+        width: '100%',
+        justifyContent: 'center'
+    },
+    inputLayout:{
+        flex:4,
+    },
+    btnGroup:{
+        height: 50,
+        width: 50,
+        marginLeft: 4
+    },
+    button:{
+        flex: 1,
+        height: 50,
+        width: 50,
+        padding: 7,
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor: '#edb600',
+        borderRadius: 25,
+        shadowColor:'#000',
+        shadowOpacity:0.2,
+        shadowOffset:{
+            width:4,
+            height: 4
+
+        },
+        elevation: 2,
     }
 })
