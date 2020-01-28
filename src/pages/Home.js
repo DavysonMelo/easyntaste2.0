@@ -1,93 +1,77 @@
 import React from 'react'
-import {Text, StyleSheet, Image, TextInput, ImageBackground, TouchableOpacity, View} from 'react-native'
-
+import {Text, StyleSheet, Image, TextInput, ImageBackground, TouchableHighlight, View} from 'react-native'
+import {SearchBar} from 'react-native-elements'
 import {MaterialIcons} from '@expo/vector-icons';
 
 import logo from './assets/logo.png'
-import bg from './assets/bg.jpg'
 export default function Home(){
     return (
-            <ImageBackground source={bg} style={styles.view}>
-                <Image source={logo} style={styles.img}/>
-                <Text style={styles.title}>Easy n' Taste</Text>
+            <View style={styles.view}>
+                <Text style={styles.title}>Pesquise receitas...</Text>
+                
+                
                 <View style={styles.formGroup}>
-                    <View style={styles.inputLayout}>
-                        <TextInput style={styles.input}/>
-                    </View>
-                    <View style={styles.btnGroup}>
-                        <TouchableOpacity style={styles.button}>
-                            <MaterialIcons name="search" size={30} color='#fff'/>
-                        </TouchableOpacity>
-                    </View>
-                </View> 
-            </ImageBackground>
+                    <TextInput style={styles.input} 
+                        autoCapitalize="words" 
+                        autoCorrect={false}
+                        placeholder="Batata, carne, cebola..."
+                        autoFocus={true}
+                        keyboardType="web-search"
+                    />
+                    <TouchableHighlight style={styles.btn}>
+                        <MaterialIcons size={45} name='search' color="#fff"/>
+                    </TouchableHighlight>
+                </View>
+                
+            </View>
     )
 }
 
 const styles = StyleSheet.create({
     view:{
         flex:1,
-        alignItems: 'center',
-        padding:20,
-        paddingBottom:200
+        paddingTop:50,
+        padding: 20,
+        backgroundColor:'#ececec'
     },
     title:{
-        color:'#fff'
+        color:'#202020',
+        fontWeight: '700',
+
+        fontSize:50
     },
     img:{
         width: 200,
         height: 200,
         marginBottom:30,
     },
-    input:{
-        width: '100%',
-        height: 50,
-        backgroundColor:'#fff',
-        borderRadius: 15,
-        padding: 15,
-        shadowColor:'#000',
-        shadowOpacity:0.2,
-        shadowOffset:{
-            width:4,
-            height: 4
-
-        },
-        elevation: 2,   
-    },
-    title:{
-        color:'#fff',
-        fontSize: 30
-    },
     formGroup:{
-        flex:1,
-        flexDirection: 'row',
+        flexDirection:'row',
+    },
+    input:{
+        flex:5,
         width: '100%',
-        justifyContent: 'center'
-    },
-    inputLayout:{
-        flex:4,
-    },
-    btnGroup:{
-        height: 50,
-        width: 50,
-        marginLeft: 4
-    },
-    button:{
-        flex: 1,
-        height: 50,
-        width: 50,
-        padding: 7,
-        justifyContent:'center',
-        alignItems:'center',
-        backgroundColor: '#edb600',
-        borderRadius: 25,
+        padding:15,
+        borderTopLeftRadius:25,
+        fontSize:20,
+        fontWeight: '300',
+        backgroundColor: '#fff',
         shadowColor:'#000',
-        shadowOpacity:0.2,
+        shadowOpacity:0.4,
         shadowOffset:{
             width:4,
-            height: 4
+            height: 6
 
         },
         elevation: 2,
+    },
+    btn:{
+        flex:1,
+        backgroundColor:'#eb0',
+        alignContent:'center',
+        justifyContent:"center",
+        elevation:3,
+        borderBottomRightRadius:25,
+        padding:6,
     }
 })
