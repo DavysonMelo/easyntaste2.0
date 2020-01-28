@@ -1,5 +1,5 @@
 import React from 'react'
-import {Text, StyleSheet, Image, TextInput, ImageBackground, TouchableHighlight, View} from 'react-native'
+import {Text, StyleSheet, Image, TextInput, ImageBackground, TouchableOpacity, View} from 'react-native'
 import {SearchBar} from 'react-native-elements'
 import {MaterialIcons} from '@expo/vector-icons';
 
@@ -18,9 +18,9 @@ export default function Home(){
                         autoFocus={true}
                         keyboardType="web-search"
                     />
-                    <TouchableHighlight style={styles.btn}>
+                    <TouchableOpacity style={styles.btn}>
                         <MaterialIcons size={45} name='search' color="#fff"/>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View>
                 
             </View>
