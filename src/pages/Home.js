@@ -3,7 +3,7 @@ import {Text, StyleSheet, Image, TextInput, ImageBackground, TouchableOpacity, V
 import {SearchBar} from 'react-native-elements'
 import {MaterialIcons} from '@expo/vector-icons';
 
-import logo from './assets/logo.png'
+import illustration from './assets/SearchIllustration.png'
 export default function Home(){
     return (
             <View style={styles.view}>
@@ -22,7 +22,11 @@ export default function Home(){
                         <MaterialIcons size={45} name='search' color="#fff"/>
                     </TouchableOpacity>
                 </View>
-                
+                <Text style={styles.subTitle}>Sugestões...</Text>
+                <View style={styles.cardSuggestions}>
+                    <Image source={illustration} style={styles.cardIllustration}/>
+                    <Text style={styles.cardText}>Nenhuma sugestão disponível. Realize sua primeira pesquisa ;)</Text>
+                </View>
             </View>
     )
 }
@@ -32,13 +36,20 @@ const styles = StyleSheet.create({
         flex:1,
         paddingTop:50,
         padding: 20,
-        backgroundColor:'#ececec'
+        backgroundColor:'#ececec',
+        flexDirection:"column"
     },
     title:{
         color:'#202020',
         fontWeight: '700',
 
         fontSize:50
+    },
+    subTitle:{
+        color:'#474747',
+        fontWeight: '700',
+        top: 40,
+        fontSize:25
     },
     img:{
         width: 200,
@@ -73,5 +84,35 @@ const styles = StyleSheet.create({
         elevation:3,
         borderBottomRightRadius:25,
         padding:6,
+    },
+    cardSuggestions:{
+        backgroundColor:'#fff',
+        padding: 20,
+        alignItems:"center",
+        flexDirection:"row",
+        top:50,
+        shadowColor:'#000',
+        borderTopLeftRadius:25,
+        borderBottomRightRadius:25,
+        shadowOpacity:0.2,
+        shadowOffset:{
+            width:4,
+            height: 6
+
+        },
+        elevation:1,
+    },
+    cardIllustration:{
+        width: 170,
+        height: 170,
+        flex:1,
+    },
+    cardText:{
+        flex:1,
+        padding: 7,
+        textAlign:"justify",
+        fontSize: 16,
+        fontStyle:"italic",
+        color:'#2e2e2e',
     }
 })
