@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         flex:1,
         paddingTop:50,
         padding: 20,
-        backgroundColor:'#ececec',
+        backgroundColor:'#f4f4f4',
         flexDirection:"column"
     },
     title:{
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#eb0',
         alignContent:'center',
         justifyContent:"center",
-        elevation:3,
+        elevation:6,
         borderBottomRightRadius:25,
         padding:6,
     },
@@ -96,11 +96,11 @@ const styles = StyleSheet.create({
         borderBottomRightRadius:25,
         shadowOpacity:0.2,
         shadowOffset:{
-            width:4,
-            height: 6
+            width:2,
+            height: 4
 
         },
-        elevation:1,
+        elevation:6,
     },
     cardIllustration:{
         width: 170,
