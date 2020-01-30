@@ -1,13 +1,21 @@
 import React from 'react'
-import {Text, StyleSheet, Image, TextInput, ImageBackground, TouchableOpacity, View} from 'react-native'
-import {SearchBar} from 'react-native-elements'
+import {Text, StyleSheet, Image, TextInput, ImageBackground, TouchableOpacity, View, SafeAreaView} from 'react-native'
 import {MaterialIcons} from '@expo/vector-icons';
 
 import illustration from './assets/SearchIllustration.png'
+import logo from './assets/logo.png'
 export default function Home(){
     return (
-            <View style={styles.view}>
-                <Text style={styles.title}>Pesquise receitas...</Text>
+        <>
+      
+            <SafeAreaView style={styles.view}>
+                    <View style={styles.header}>
+                        <View style={styles.headerTitle}>
+                            <Text style={styles.title}>Easy N' Taste</Text>
+                            <Text style={styles.info}>Encotre as melhores receitas pesquisando pelos ingredientes que você tem em casa ;)</Text>
+                        </View>        
+                        <Image source={logo} style={styles.headerLogo}/>
+                    </View>
                 
                 
                 <View style={styles.formGroup}>
@@ -19,34 +27,60 @@ export default function Home(){
                         keyboardType="web-search"
                     />
                     <TouchableOpacity style={styles.btn}>
-                        <MaterialIcons size={45} name='search' color="#fff"/>
+                        <MaterialIcons size={45} name='search' color="#eb0"/>
                     </TouchableOpacity>
                 </View>
-                <Text style={styles.subTitle}>Sugestões...</Text>
-                <View style={styles.cardSuggestions}>
-                    <Image source={illustration} style={styles.cardIllustration}/>
-                    <Text style={styles.cardText}>Nenhuma sugestão disponível. Realize sua primeira pesquisa ;)</Text>
+                <View style={styles.suggestionsBlock}>
+                    <Text style={styles.subTitle}>Sugestões...</Text>
+                    <View style={styles.cardSuggestions}>
+                        <Image source={illustration} style={styles.cardIllustration}/>
+                        <Text style={styles.cardText}>Nenhuma sugestão disponível. Realize sua primeira pesquisa ;)</Text>
+                    </View>
                 </View>
-            </View>
+                
+            </SafeAreaView>
+        </>
     )
 }
 
 const styles = StyleSheet.create({
     view:{
         flex:1,
-        paddingTop:50,
-        padding: 20,
-        backgroundColor:'#f4f4f4',
+        backgroundColor:'#fc1',
         flexDirection:"column"
     },
+    header:{
+        flexDirection:'row',
+        backgroundColor: '#171717',
+        padding: 30,
+        paddingTop:100,
+        alignContent:"space-between",
+        justifyContent:"space-between",
+    },
+    headerTitle:{
+        flex:1,
+        flexDirection:"column",
+        padding: 10,
+        marginRight: 10
+    },
+    headerLogo:{
+        width: 150,
+        height: 150,
+        marginLeft: 10,
+    },
     title:{
-        color:'#202020',
+        color:'#ffc800',
         fontWeight: '700',
-
-        fontSize:50
+        fontSize:25
+    },
+    info:{
+        textAlign:"justify",
+        fontSize: 16,
+        fontStyle:"italic",
+        color:'#fff',
     },
     subTitle:{
-        color:'#474747',
+        color:'#fff',
         fontWeight: '700',
         top: 40,
         fontSize:25
@@ -58,6 +92,8 @@ const styles = StyleSheet.create({
     },
     formGroup:{
         flexDirection:'row',
+        padding: 20,
+        paddingTop:0,
     },
     input:{
         flex:5,
@@ -70,21 +106,27 @@ const styles = StyleSheet.create({
         shadowColor:'#000',
         shadowOpacity:0.4,
         shadowOffset:{
-            width:4,
-            height: 6
+            width:2,
+            height: 4
 
         },
-        elevation: 2,
+        elevation: 4,
+        bottom:20,
     },
     btn:{
         flex:1,
-        backgroundColor:'#eb0',
+        backgroundColor:'#fff',
         alignContent:'center',
         justifyContent:"center",
-        elevation:6,
+        elevation:4,
         borderBottomRightRadius:25,
         padding:6,
+        
+        bottom:20,
     },
+    suggestionsBlock:{
+        padding: 20
+    },  
     cardSuggestions:{
         backgroundColor:'#fff',
         padding: 20,
