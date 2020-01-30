@@ -97,9 +97,9 @@ const styles = StyleSheet.create({
         fontWeight: '300',
         backgroundColor: '#fff',
         shadowColor:'#000',
-        shadowOpacity:0.4,
+        shadowOpacity:0.2,
         shadowOffset:{
-            width:2,
+            width:4,
             height: 4
 
         },
@@ -118,9 +118,9 @@ const styles = StyleSheet.create({
         bottom:20,
 
         shadowColor:'#000',
-        shadowOpacity:0.4,
+        shadowOpacity:0.2,
         shadowOffset:{
-            width:2,
+            width:4,
             height: 4
 
         },
@@ -137,9 +137,9 @@ const styles = StyleSheet.create({
         shadowColor:'#000',
         borderTopLeftRadius:25,
         borderBottomRightRadius:25,
-        shadowOpacity:0.4,
+        shadowOpacity:0.2,
         shadowOffset:{
-            width:2,
+            width:4,
             height: 4
 
         },
