@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         width: '100%',
         padding:15,
         borderTopLeftRadius:25,
-        fontSize:20,
+        fontSize:hp('2.5%'),
         fontWeight: '300',
         backgroundColor: '#fff',
         shadowColor:'#000',
