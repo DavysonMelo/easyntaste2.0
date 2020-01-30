@@ -19,7 +19,7 @@ export default function Home(){
                     </View>
 
                     <View style={styles.formGroup}>
-                        <TextInput style={styles.input} autoCapitalize="words" autoCorrect={false} placeholder="Batata, carne, cebola..." autoFocus={true} keyboardType="web-search" />
+                        <TextInput style={styles.input} autoCapitalize="words" autoCorrect={false} placeholder="Batata, carne, cebola..." keyboardType="web-search" />
                         <TouchableOpacity style={styles.btn}>
                             <MaterialIcons size={45} name='search' color="#eb0" />
                         </TouchableOpacity>
@@ -116,6 +116,14 @@ const styles = StyleSheet.create({
         padding:6,
         
         bottom:20,
+
+        shadowColor:'#000',
+        shadowOpacity:0.4,
+        shadowOffset:{
+            width:2,
+            height: 4
+
+        },
     },
     suggestionsBlock:{
         padding: 20
@@ -129,7 +137,7 @@ const styles = StyleSheet.create({
         shadowColor:'#000',
         borderTopLeftRadius:25,
         borderBottomRightRadius:25,
-        shadowOpacity:0.2,
+        shadowOpacity:0.4,
         shadowOffset:{
             width:2,
             height: 4
