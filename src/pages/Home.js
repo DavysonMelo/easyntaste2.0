@@ -42,13 +42,10 @@ export default function Home(){
                     </View>
                     <View style={styles.suggestionsBlock}>
                         <Text style={styles.subTitle}>Sugestões...</Text>
-                        <View style={styles.cardSuggestions}>
-                            <Image source={illustration} style={styles.cardIllustration}/>
-                            <Text style={styles.cardText}>Nenhuma sugestão disponível. Realize sua primeira pesquisa ;)</Text>
-                        </View>
 
 
-                        
+
+
                     </View>
                 </View>
             </ScrollView>
