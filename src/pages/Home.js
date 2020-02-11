@@ -1,10 +1,26 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Text, StyleSheet, Image, TextInput, ScrollView, TouchableOpacity, View, SafeAreaView} from 'react-native'
 import {MaterialIcons} from '@expo/vector-icons';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen'
 import illustration from './assets/SearchIllustration.png'
 import logo from './assets/logo.png'
+
+import api from '../services/api'
+
 export default function Home(){
+    const randomIngredients = ["batata", "peixe", "cebola", "trigo", "alho", "abóbora", "macarrão", "Queijo parmesão ralado"]
+    const [suggestions, setSuggestions] = useState([])
+    useEffect(()=>{
+        async function getRandomSuggestions(){
+            const randomIndex = Math.floor(Math.random() * (randomIngredients.length + 1));
+            const response = await api.get(`/receitas?ingredientes=${randomIngredients[randomIndex]}&page=2`)
+            console.log(response.data)
+            return response.data
+        }
+
+        setSuggestions(getRandomSuggestions())
+
+    },[])
     return (
     <>
         <SafeAreaView style={styles.view}>
@@ -30,6 +46,9 @@ export default function Home(){
                             <Image source={illustration} style={styles.cardIllustration}/>
                             <Text style={styles.cardText}>Nenhuma sugestão disponível. Realize sua primeira pesquisa ;)</Text>
                         </View>
+
+
+                        
                     </View>
                 </View>
             </ScrollView>
