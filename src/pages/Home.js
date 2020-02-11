@@ -14,11 +14,10 @@ export default function Home(){
         async function getRandomSuggestions(){
             const randomIndex = Math.floor(Math.random() * (randomIngredients.length + 1));
             const response = await api.get(`/receitas?ingredientes=${randomIngredients[randomIndex]}&page=2`)
-            console.log(response.data)
             return response.data
         }
 
-        setSuggestions(getRandomSuggestions())
+        setSuggestions(await getRandomSuggestions())
 
     },[])
     return (
