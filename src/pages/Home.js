@@ -126,7 +126,8 @@ const styles = StyleSheet.create({
         },
     },
     suggestionsBlock:{
-        padding: 20
+        padding: 20,
+        flexDirection:"column",
     },  
     cardSuggestions:{
         backgroundColor:'#fff',

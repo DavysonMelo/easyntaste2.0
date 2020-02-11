@@ -3,6 +3,6 @@
   "lanType": "ip",
   "dev": true,
   "minify": false,
-  "urlRandomness": "6k-hm2",
+  "urlRandomness": "d3-zig",
   "https": false
 }
