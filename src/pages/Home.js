@@ -17,7 +17,7 @@ export default function Home(){
             return response.data
         }
 
-        setSuggestions(await getRandomSuggestions())
+        setSuggestions(getRandomSuggestions())
 
     },[])
     return (
