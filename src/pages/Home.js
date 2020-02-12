@@ -44,15 +44,7 @@ export default function Home(){
                     </View>
                     <View style={styles.suggestionsBlock}>
                         <Text style={styles.subTitle}>Sugestões...</Text>
-<<<<<<< HEAD
-                        
-
-
-=======
-
                         <RecipeList receitas={suggestions}/>
->>>>>>> 16ee190a2d7836642ce0ffe80121a90ec2a8cc59
-
                     </View>
                 </View>
             </ScrollView>
