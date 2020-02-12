@@ -15,8 +15,10 @@ export default function RecipeList({receitas}){
                 receitas.map(item => (
                     <View  style={styles.container} key={item.url}>
                         <Image style={styles.thumbnail} source={{uri: item.img}}/>
-                        <Text style={styles.title}>{item.titulo}</Text>
-                        <Text style={styles.description}>{item.description}</Text>
+                        <View style={styles.textArea}>
+                            <Text style={styles.title}>{item.titulo}</Text>
+                            <Text style={styles.description}>{item.description}</Text>
+                        </View>
                     </View>
                 ))
             }
@@ -32,6 +34,7 @@ const styles = StyleSheet.create({
     container:{
         backgroundColor: "#fff",
         marginBottom: 10,
+        width: wp('90%'),
         shadowColor:'#000',
         shadowOpacity:0.2,
         shadowOffset:{
@@ -43,28 +46,27 @@ const styles = StyleSheet.create({
     },
 
     thumbnail:{
-        flex: 1,
-        width: wp('88%'),
-        height: hp('35%'),
-        resizeMode: 'cover',
+        width: wp('90%'),
+        height: hp('30%'),
         alignSelf: "center",
     },
-
+    textArea:{
+        padding:25,
+    },  
     title:{
         color: "#1c1c1c",
-        alignSelf: "center",
         fontWeight: "bold",
         marginTop: 10,
-        paddingHorizontal: 15,
-        fontSize: 18,
+        fontSize: 20,
+        textTransform:"uppercase",
     },
-
+    
     description:{
+        color:"#1c1c1c",
         alignSelf: "center",
         textAlign: "justify",
-        marginTop: 10,
+        marginTop: 20,
         marginBottom: 15,
-        paddingHorizontal: 15,
     }
 
 
