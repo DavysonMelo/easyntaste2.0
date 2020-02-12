@@ -3,6 +3,7 @@ import {Text, StyleSheet, Image, TextInput, ScrollView, TouchableOpacity, View, 
 import {MaterialIcons} from '@expo/vector-icons';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen'
 import illustration from './assets/SearchIllustration.png'
+import RecipeList from '../components/RecipeList'
 import logo from './assets/logo.png'
 
 import api from '../services/api'
@@ -14,16 +15,18 @@ export default function Home(){
         async function getRandomSuggestions(){
             const randomIndex = Math.floor(Math.random() * (randomIngredients.length + 1));
             const response = await api.get(`/receitas?ingredientes=${randomIngredients[randomIndex]}&page=2`)
-            return response.data
+            setSuggestions(response.data)
         }
 
-        setSuggestions(getRandomSuggestions())
+        getRandomSuggestions()
+
+        
 
     },[])
     return (
     <>
         <SafeAreaView style={styles.view}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <View>
                     <View style={styles.header}>
                         <View style={styles.headerTitle}>
@@ -42,8 +45,7 @@ export default function Home(){
                     <View style={styles.suggestionsBlock}>
                         <Text style={styles.subTitle}>Sugestões...</Text>
 
-
-
+                        <RecipeList receitas={suggestions}/>
 
                     </View>
                 </View>
@@ -91,7 +93,8 @@ const styles = StyleSheet.create({
     subTitle:{
         color:'#fff',
         fontWeight: '700',
-        fontSize:hp('3.2%')
+        fontSize:hp('3.2%'),
+        marginBottom: 10
     },
     img:{
         width: 200,
