@@ -41,7 +41,7 @@ export default function Home(){
                     </View>
                     <View style={styles.suggestionsBlock}>
                         <Text style={styles.subTitle}>Sugestões...</Text>
-
+                        
 
 
 
