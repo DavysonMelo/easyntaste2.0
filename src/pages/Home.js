@@ -8,19 +8,21 @@ import logo from './assets/logo.png'
 
 import api from '../services/api'
 
+import illustration from './assets/SearchIllustration.png'
+
+
 export default function Home(){
     const randomIngredients = ["batata", "peixe", "cebola", "trigo", "alho", "abóbora", "macarrão", "Queijo parmesão ralado"]
-    const [suggestions, setSuggestions] = useState([])
     const [searchString, setSearchString] = useState('')
     
-    const [recipes, setRecipes]= useState('')
+    const [recipes, setRecipes]= useState([])
     const [modalVisible, setModalVisibility] = useState(false)
 
     useEffect(()=>{
         async function getRandomSuggestions(){
             const randomIndex = Math.floor(Math.random() * (randomIngredients.length + 1));
             const response = await api.get(`/receitas?ingredientes=${randomIngredients[randomIndex]}&page=2`)
-            setSuggestions(response.data)
+            setRecipes(response.data)
         }
 
         getRandomSuggestions()
@@ -32,7 +34,7 @@ export default function Home(){
             ingredientes:searchString,
             page:1
         }})
-        console.log(response.data)
+        setRecipes(response.data)
         setModalVisibility(false)
     }
     return (
@@ -61,9 +63,12 @@ export default function Home(){
                         </TouchableOpacity>
                     </View>
                     <View style={styles.suggestionsBlock}>
-                        <Text style={styles.subTitle}>Sugestões...</Text>
-
-                        <RecipeList receitas={suggestions}/>
+                        <Text style={styles.subTitle} numberOfLines={2} >{searchString.length ? `Resultados para: ${searchString}`: "Sugestões"} </Text>
+                        {
+                            recipes.length>0? <RecipeList receitas={recipes}/> : <View style={styles.cardSuggestions}><Image source={illustration} style={styles.cardIllustration}/><Text style={styles.cardText}>Nenhuma Receita foi encontrada. Verifique se digitou os ingredientes corretamente ;)</Text></View>
+                            
+                        }
+                        
                     </View>
                 </View>
             </ScrollView>
@@ -110,8 +115,8 @@ const styles = StyleSheet.create({
     subTitle:{
         color:'#fff',
         fontWeight: '700',
-        fontSize:hp('3.2%'),
-        marginBottom: 10
+        fontSize:hp('3%'),
+        marginBottom: 10,
     },
     img:{
         width: 200,
@@ -189,7 +194,6 @@ const styles = StyleSheet.create({
     cardText:{
         flex:1,
         padding: 7,
-        textAlign:"justify",
         fontSize: hp('2%'),
         fontStyle:"italic",
         color:'#2e2e2e',
