@@ -26,7 +26,7 @@ export default function Home(){
     return (
     <>
         <SafeAreaView style={styles.view}>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView shosVerticalScrollIndicator={false}>
                 <View>
                     <View style={styles.header}>
                         <View style={styles.headerTitle}>
@@ -43,9 +43,10 @@ export default function Home(){
                         </TouchableOpacity>
                     </View>
                     <View style={styles.suggestionsBlock}>
-                        <Text style={styles.subTitle}>Sugestões...</Text>
-
-                        <RecipeList receitas={suggestions}/>
+                        <Text style={styles.subTitle}>Sugestões</Text>
+                        <ScrollView style={styles.list}>
+                            <RecipeList style={styles.listItens} receitas={suggestions}/>
+                        </ScrollView>
                     </View>
                 </View>
             </ScrollView>
@@ -93,7 +94,8 @@ const styles = StyleSheet.create({
         color:'#fff',
         fontWeight: '700',
         fontSize:hp('3.2%'),
-        marginBottom: 10
+        marginBottom: 10,
+        marginLeft: 20,
     },
     img:{
         width: 200,
@@ -143,7 +145,6 @@ const styles = StyleSheet.create({
         },
     },
     suggestionsBlock:{
-        padding: 20,
         flexDirection:"column",
     },  
     cardSuggestions:{
@@ -175,5 +176,8 @@ const styles = StyleSheet.create({
         fontSize: hp('2%'),
         fontStyle:"italic",
         color:'#2e2e2e',
+    },
+    listItens:{
+        
     }
 })
