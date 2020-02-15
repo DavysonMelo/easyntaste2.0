@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react'
 import {Text, StyleSheet, Image, TextInput, ScrollView, TouchableOpacity, View, SafeAreaView} from 'react-native'
 import {MaterialIcons} from '@expo/vector-icons';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen'
-import illustration from './assets/SearchIllustration.png'
 import RecipeList from '../components/RecipeList'
+import LoadingModal from '../components/LoadingModal'
 import logo from './assets/logo.png'
 
 import api from '../services/api'
@@ -11,6 +11,11 @@ import api from '../services/api'
 export default function Home(){
     const randomIngredients = ["batata", "peixe", "cebola", "trigo", "alho", "abóbora", "macarrão", "Queijo parmesão ralado"]
     const [suggestions, setSuggestions] = useState([])
+    const [searchString, setSearchString] = useState('')
+    
+    const [recipes, setRecipes]= useState('')
+    const [modalVisible, setModalVisibility] = useState(false)
+
     useEffect(()=>{
         async function getRandomSuggestions(){
             const randomIndex = Math.floor(Math.random() * (randomIngredients.length + 1));
@@ -19,14 +24,22 @@ export default function Home(){
         }
 
         getRandomSuggestions()
-
-        
-
     },[])
+
+    async function searchButton(){
+        setModalVisibility(true)
+        const response = await api.get(`/receitas`,{params:{
+            ingredientes:searchString,
+            page:1
+        }})
+        console.log(response.data)
+        setModalVisibility(false)
+    }
     return (
     <>
         <SafeAreaView style={styles.view}>
             <ScrollView showsVerticalScrollIndicator={false}>
+                <LoadingModal visible={modalVisible}/>
                 <View>
                     <View style={styles.header}>
                         <View style={styles.headerTitle}>
@@ -37,8 +50,13 @@ export default function Home(){
                     </View>
 
                     <View style={styles.formGroup}>
-                        <TextInput style={styles.input} autoCapitalize="words" autoCorrect={false} placeholder="Batata, carne, cebola..." keyboardType="web-search" />
-                        <TouchableOpacity style={styles.btn}>
+                        <TextInput style={styles.input} 
+                            autoCapitalize="words" 
+                            autoCorrect={false} 
+                            placeholder="Batata, carne, cebola..." 
+                            onChangeText={word=>setSearchString(word)}
+                            keyboardType="web-search" />
+                        <TouchableOpacity style={styles.btn} onPress={searchButton}>
                             <MaterialIcons size={45} name='search' color="#eb0" />
                         </TouchableOpacity>
                     </View>
