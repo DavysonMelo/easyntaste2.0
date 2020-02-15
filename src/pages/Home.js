@@ -39,7 +39,7 @@ export default function Home(){
     <>
         <SafeAreaView style={styles.view}>
             <ScrollView showsVerticalScrollIndicator={false}>
-                <LoadingModal visible={true}/>
+                <LoadingModal visible={modalVisible}/>
                 <View>
                     <View style={styles.header}>
                         <View style={styles.headerTitle}>
