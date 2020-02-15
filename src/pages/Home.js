@@ -2,31 +2,46 @@ import React, {useState, useEffect} from 'react'
 import {Text, StyleSheet, Image, TextInput, ScrollView, TouchableOpacity, View, SafeAreaView} from 'react-native'
 import {MaterialIcons} from '@expo/vector-icons';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen'
-import illustration from './assets/SearchIllustration.png'
 import RecipeList from '../components/RecipeList'
+import LoadingModal from '../components/LoadingModal'
 import logo from './assets/logo.png'
 
 import api from '../services/api'
 
+import illustration from './assets/SearchIllustration.png'
+
+
 export default function Home(){
     const randomIngredients = ["batata", "peixe", "cebola", "trigo", "alho", "abóbora", "macarrão", "Queijo parmesão ralado"]
-    const [suggestions, setSuggestions] = useState([])
+    const [searchString, setSearchString] = useState('')
+    
+    const [recipes, setRecipes]= useState([])
+    const [modalVisible, setModalVisibility] = useState(false)
+
     useEffect(()=>{
         async function getRandomSuggestions(){
             const randomIndex = Math.floor(Math.random() * (randomIngredients.length + 1));
             const response = await api.get(`/receitas?ingredientes=${randomIngredients[randomIndex]}&page=2`)
-            setSuggestions(response.data)
+            setRecipes(response.data)
         }
 
         getRandomSuggestions()
-
-        
-
     },[])
+
+    async function searchButton(){
+        setModalVisibility(true)
+        const response = await api.get(`/receitas`,{params:{
+            ingredientes:searchString,
+            page:1
+        }})
+        setRecipes(response.data)
+        setModalVisibility(false)
+    }
     return (
     <>
         <SafeAreaView style={styles.view}>
-            <ScrollView shosVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <LoadingModal visible={modalVisible}/>
                 <View>
                     <View style={styles.header}>
                         <View style={styles.headerTitle}>
@@ -37,16 +52,27 @@ export default function Home(){
                     </View>
 
                     <View style={styles.formGroup}>
-                        <TextInput style={styles.input} autoCapitalize="words" autoCorrect={false} placeholder="Batata, carne, cebola..." keyboardType="web-search" />
-                        <TouchableOpacity style={styles.btn}>
+                        <TextInput style={styles.input} 
+                            autoCapitalize="words" 
+                            autoCorrect={false} 
+                            placeholder="Batata, carne, cebola..." 
+                            onChangeText={word=>setSearchString(word)}
+                            keyboardType="web-search" />
+                        <TouchableOpacity style={styles.btn} onPress={searchButton}>
                             <MaterialIcons size={45} name='search' color="#eb0" />
                         </TouchableOpacity>
                     </View>
                     <View style={styles.suggestionsBlock}>
-                        <Text style={styles.subTitle}>Sugestões</Text>
+                    <Text style={styles.subTitle} numberOfLines={2} >{searchString.length ? `Resultados para: ${searchString}`: "Sugestões"} </Text>
                         <ScrollView style={styles.list}>
-                            <RecipeList style={styles.listItens} receitas={suggestions}/>
+                        {
+                            recipes.length>0? <RecipeList receitas={recipes}/> : <View style={styles.cardSuggestions}><Image source={illustration} style={styles.cardIllustration}/><Text style={styles.cardText}>Nenhuma Receita foi encontrada. Verifique se digitou os ingredientes corretamente ;)</Text></View>
+                            
+                        }
                         </ScrollView>
+                        
+                        
+                        
                     </View>
                 </View>
             </ScrollView>
@@ -93,9 +119,9 @@ const styles = StyleSheet.create({
     subTitle:{
         color:'#fff',
         fontWeight: '700',
-        fontSize:hp('3.2%'),
+        fontSize:hp('3%'),
         marginBottom: 10,
-        marginLeft: 20,
+        marginLeft: 20
     },
     img:{
         width: 200,
@@ -172,7 +198,6 @@ const styles = StyleSheet.create({
     cardText:{
         flex:1,
         padding: 7,
-        textAlign:"justify",
         fontSize: hp('2%'),
         fontStyle:"italic",
         color:'#2e2e2e',
